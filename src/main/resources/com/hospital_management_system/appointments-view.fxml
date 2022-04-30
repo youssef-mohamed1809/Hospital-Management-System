@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="current_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="706.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hospital_management_system.AppointmentsViewController">
+   <children>
+      <Separator layoutX="350.0" layoutY="94.0" orientation="VERTICAL" prefHeight="422.0" prefWidth="0.0" />
+      <MenuBar layoutY="68.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="706.0" style="-fx-background-color: #1e90ff;">
+         <menus>
+            <Menu mnemonicParsing="false" text="Patient">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#add_patient_screen" text="Add patient" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Appointment">
+              <items>
+                  <MenuItem mnemonicParsing="false" text="Appointments Today" />
+                <MenuItem mnemonicParsing="false" onAction="#add_appointment_screen" text="Add appointment" />
+                  <MenuItem mnemonicParsing="false" onAction="#doctors_list" text="Doctor List" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Account">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#information" text="My information" />
+                  <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout" />
+              </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <ImageView fitHeight="68.0" fitWidth="302.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Hospital%20System.png" />
+         </image></ImageView>
+      <Label fx:id="appointments" alignment="TOP_LEFT" layoutX="356.0" layoutY="144.0" prefHeight="347.0" prefWidth="336.0" />
+      <Label layoutX="14.0" layoutY="116.0" text="Appointments Today">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="356.0" layoutY="116.0" text="Doctors Available">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TilePane fx:id="patients_id" layoutX="14.0" layoutY="144.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="336.0" tileAlignment="TOP_LEFT" />
+      <TilePane fx:id="available_doctors" layoutX="356.0" layoutY="144.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="336.0" tileAlignment="TOP_LEFT" />
+      <ImageView fitHeight="68.0" fitWidth="409.0" layoutX="302.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
