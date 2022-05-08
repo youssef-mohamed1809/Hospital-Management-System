@@ -22,28 +22,20 @@ public class AddAppointmentController implements Initializable {
     Parent root;
     Stage stage;
     Scene scene;
-
     @FXML
     DatePicker datePicker;
-
     @FXML
     TextField patientid;
-
     @FXML
     TextField doctorid;
-
     @FXML
     TextField time_input;
-
     @FXML
     Parent current_root;
-
     @FXML
     Label error_label;
-
     @FXML
     Button save_appointment;
-
     @FXML
     Label time_error;
 
@@ -56,12 +48,10 @@ public class AddAppointmentController implements Initializable {
         String doctor_id = doctorid.getText();
         String time = time_input.getText();
         String date_saved = date_string + " " + time;
-        String query = "select * from schedule where idemployee = \"" + doctor_id + "\" and time = \"" + date_saved
-                + "\"";
+        String query = "select * from schedule where idemployee = \"" + doctor_id + "\" and time = \"" + date_saved + "\"";
         db.resultSet = db.statement.executeQuery(query);
         db.resultSet.next();
         if(!db.resultSet.next()){
-
             String add = "insert into schedule(idpatient, idemployee, time) " +
                     "values(\"" + patient_id + "\",\"" + doctor_id + "\", \"" + date_saved +"\")";
             db.statement.executeUpdate(add);
@@ -82,8 +72,7 @@ public class AddAppointmentController implements Initializable {
         String doctor_id = doctorid.getText();
         String time = time_input.getText();
         String date_saved = date_string + " " + time;
-        String query = "select * from schedule where idemployee = \"" + doctor_id + "\" and time = \"" + date_saved
-                + "\"";
+        String query = "select * from schedule where idemployee = \"" + doctor_id + "\" and time = \"" + date_saved + "\"";
         db.resultSet = db.statement.executeQuery(query);
         if(db.resultSet.next()){
             time_error.setTextFill(Color.RED);
@@ -97,29 +86,29 @@ public class AddAppointmentController implements Initializable {
     }
 
     @FXML
-    void check_availability() throws SQLException {
-        DatabaseManager db = new DatabaseManager();
-        String doctor_id = doctorid.getText();
-        LocalDate date = datePicker.getValue();
+    void check_availability() {
+        try {
+            DatabaseManager db = new DatabaseManager();
+            String doctor_id = doctorid.getText();
+            LocalDate date = datePicker.getValue();
+            int day = date.getDayOfWeek().getValue();
+            day--;
+            String query = "select * from available_days where doctorid = \"" + doctor_id + "\"";
+            db.resultSet = db.statement.executeQuery(query);
+            db.resultSet.next();
+            boolean[] available_days = {db.resultSet.getBoolean("monday"), db.resultSet.getBoolean("tuesday"),
+                    db.resultSet.getBoolean("wednesday"), db.resultSet.getBoolean("thursday"),
+                    db.resultSet.getBoolean("friday"), db.resultSet.getBoolean("saturday"),
+                    db.resultSet.getBoolean("sunday")};
 
-        int day = date.getDayOfWeek().getValue();
-        day--;
+            if (!available_days[day]) {
+                error_label.setText("Doctor is not available at that day");
+            } else {
+                error_label.setText("");
+            }
+        } catch(Exception e){
 
-        String query = "select * from available_days where doctorid = \"" + doctor_id + "\"";
-        db.resultSet = db.statement.executeQuery(query);
-        db.resultSet.next();
-
-        boolean[] available_days = {db.resultSet.getBoolean("monday"), db.resultSet.getBoolean("tuesday"),
-                db.resultSet.getBoolean("wednesday"), db.resultSet.getBoolean("thursday"),
-                db.resultSet.getBoolean("friday"), db.resultSet.getBoolean("saturday"),
-                db.resultSet.getBoolean("sunday")};
-
-        if(!available_days[day]){
-            error_label.setText("Doctor is not available at that day");
-        }else{
-            error_label.setText("");
         }
-
 
     }
 
@@ -130,6 +119,8 @@ public class AddAppointmentController implements Initializable {
         stage.setTitle("Add Patient");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
+        stage.setTitle("Add Patient");
+        stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -142,6 +133,8 @@ public class AddAppointmentController implements Initializable {
         scene = new Scene(root);
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
+        stage.setTitle("Login");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -153,6 +146,8 @@ public class AddAppointmentController implements Initializable {
         scene = new Scene(root);
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
+        stage.setResizable(false);
+        stage.setTitle("Appointments");
         stage.setScene(scene);
         stage.show();
     }
@@ -163,8 +158,10 @@ public class AddAppointmentController implements Initializable {
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
+        stage.setTitle("Doctor List");
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -175,6 +172,8 @@ public class AddAppointmentController implements Initializable {
         scene = new Scene(root);
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
+        stage.setTitle("Information");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

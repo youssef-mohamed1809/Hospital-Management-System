@@ -1,7 +1,5 @@
 package com.hospital_management_system;
 
-import com.hospital_management_system.DatabaseManager;
-import com.hospital_management_system.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,15 +24,12 @@ public class AppointmentsViewController implements Initializable {
     Parent root;
     Stage stage;
     Scene scene;
-
     @FXML
     Parent current_root;
     @FXML
     Label appointments;
-
     @FXML
     TilePane patients_id;
-
     @FXML
     TilePane available_doctors;
 
@@ -54,7 +49,6 @@ public class AppointmentsViewController implements Initializable {
             patients[count] = db.resultSet.getString("idpatient");
             count++;
         }
-
         RadioButton[] rbs = new RadioButton[count];
         for(int i = 0; i < count; i++){
             String rb_query = "select * from schedule where idpatient = \"" + patients[i] + "\"";
@@ -190,6 +184,7 @@ public class AppointmentsViewController implements Initializable {
         scene = new Scene(root);
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -198,10 +193,12 @@ public class AppointmentsViewController implements Initializable {
     void logout(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("login-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
+        stage.setTitle("Login");
         scene = new Scene(root);
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -210,9 +207,11 @@ public class AppointmentsViewController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("add-appointment-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("Add Appointment");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -221,9 +220,11 @@ public class AppointmentsViewController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("information-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("My Information");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -232,9 +233,11 @@ public class AppointmentsViewController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("doctors-list-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("Doctor List");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

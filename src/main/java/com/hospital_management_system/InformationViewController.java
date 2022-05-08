@@ -1,8 +1,5 @@
 package com.hospital_management_system;
 
-import com.hospital_management_system.DatabaseManager;
-import com.hospital_management_system.LoginViewController;
-import com.hospital_management_system.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,10 +19,8 @@ public class InformationViewController implements Initializable {
     Parent root;
     Stage stage;
     Scene scene;
-
     @FXML
     Parent current_root;
-
     @FXML
     Label information_label;
 
@@ -52,9 +47,11 @@ public class InformationViewController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("doctors-list-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("Doctor List");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -63,9 +60,11 @@ public class InformationViewController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("login-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("Login");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -74,9 +73,11 @@ public class InformationViewController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("add-appointment-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("Add Appointment");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -89,6 +90,7 @@ public class InformationViewController implements Initializable {
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 }

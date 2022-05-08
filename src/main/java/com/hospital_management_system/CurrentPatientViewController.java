@@ -18,39 +18,33 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class CurrentPatientViewController implements Initializable {
-    @FXML
-    Parent current_root;
-
     Parent root;
     Stage stage;
     Scene scene;
-
     String patientid;
-
+    @FXML
+    Parent current_root;
     @FXML
     TextArea medical_history;
-
     @FXML
     TextArea diagnosis;
-
     @FXML
     TextArea treatment;
-
     @FXML
     Label name_label;
-
     @FXML
     Button finish_appointment;
-
 
     @FXML
     void logout(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("login-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("Login");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -59,9 +53,11 @@ public class CurrentPatientViewController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("schedule-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("Schedule");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -70,9 +66,11 @@ public class CurrentPatientViewController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("doctor-information-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("My Information");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -150,18 +148,11 @@ public class CurrentPatientViewController implements Initializable {
                 db.resultSet.next();
                 String name = db.resultSet.getString("full_name");
                 int age = db.resultSet.getInt("age");
-//                String job = db.resultSet.getString("job");
                 String history = db.resultSet.getString("medical_history");
-//                System.out.println(name + age + job);
                 name_label.setText(name + ", " + age + " years");
                 if(history != null && !(history.equals(""))){
                     medical_history.setText(history);
                 }
-
-
-
-
-
             }
 
         } catch (SQLException e) {

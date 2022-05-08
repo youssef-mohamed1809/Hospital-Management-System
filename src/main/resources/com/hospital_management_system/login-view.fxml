@@ -33,7 +33,7 @@
       </PasswordField>
       <Label fx:id="error_label" alignment="CENTER" layoutX="243.0" layoutY="324.0" prefHeight="18.0" prefWidth="214.0" textFill="RED">
          <font>
-            <Font size="21.0" />
+            <Font size="16.0" />
          </font></Label>
    </children>
 </AnchorPane>

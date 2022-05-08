@@ -1,7 +1,6 @@
 package com.hospital_management_system;
 
-import com.hospital_management_system.DatabaseManager;
-import com.hospital_management_system.Main;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,10 +19,8 @@ import java.util.ResourceBundle;
 public class DoctorsListViewController implements Initializable {
     @FXML
     Label doctors;
-
     @FXML
     Parent current_root;
-
     Parent root;
     Stage stage;
     Scene scene;
@@ -38,7 +35,7 @@ public class DoctorsListViewController implements Initializable {
             while(db.resultSet.next()){
                 String doctor_name = db.resultSet.getString("name");
                 String doctor_id = db.resultSet.getString("id");
-                doctors_list = "Dr. " + doctor_name + ", ID: " + doctor_id;
+                doctors_list += "Dr. " + doctor_name + ", ID: " + doctor_id + "\n";
             }
             doctors.setText(doctors_list);
         } catch (SQLException e) {
@@ -55,6 +52,7 @@ public class DoctorsListViewController implements Initializable {
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -63,9 +61,11 @@ public class DoctorsListViewController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("login-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("Login");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -74,9 +74,11 @@ public class DoctorsListViewController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("add-appointment-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("Add Appointment");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -85,9 +87,11 @@ public class DoctorsListViewController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("information-view.fxml"));
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("My Information");
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 }

@@ -17,13 +17,10 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ScheduleViewController implements Initializable {
-
     @FXML
     Parent current_root;
-
     @FXML
     Label appointments_label;
-
     Parent root;
     Stage stage;
     Scene scene;
@@ -34,7 +31,9 @@ public class ScheduleViewController implements Initializable {
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
+        stage.setTitle("My Information");
         stage.getIcons().add(icon);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -45,7 +44,9 @@ public class ScheduleViewController implements Initializable {
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
+        stage.setTitle("Login");
         stage.getIcons().add(icon);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -56,8 +57,10 @@ public class ScheduleViewController implements Initializable {
         stage = (Stage)current_root.getScene().getWindow();
         scene = new Scene(root);
         Image icon = new Image(Main.class.getResource("icon.png").toExternalForm());
+        stage.setTitle("Current Patient");
         stage.getIcons().add(icon);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -71,7 +74,6 @@ public class ScheduleViewController implements Initializable {
             db.resultSet = db.statement.executeQuery(query);
             String label = "";
             while(db.resultSet.next()){
-                //System.out.println(db.resultSet.getString("time"));
                 label += db.resultSet.getString("idpatient") + ", at " + (db.resultSet.getString("time")).substring(11);
                 label += "\n";
             }
