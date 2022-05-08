@@ -1,7 +1,7 @@
 # Hospital-Management-System
 
 ## Overview
-This project was assigned as part of the CSE334 Software Engineering course and it is an out-patient hospital management system. A total of 8 students contributed to
+This project was assigned as part of the CSE334 Software Engineering course and it is an outpatient hospital management system. A total of 8 students contributed to
 this project. The targeted audience for this desktop application are the doctors and secretaries of a hospital where each of them have different roles. The secretary can 
 add a patient as well as add an appointment and the data gets saved in a MySQL database. The secretary can also view the patients and doctors that are present today and
 can add a doctor excuse for the doctors if the doctor's not present. The doctors can view the ID of the patients that are scheduled today current patient that is
